@@ -1,0 +1,13 @@
+PODS:
+  - CircleMenu (1.0.7)
+  - pop (1.0.9)
+
+DEPENDENCIES:
+  - CircleMenu (~> 1.0.0)
+  - pop
+
+SPEC CHECKSUMS:
+  CircleMenu: ddd8000fe2774497c367b8f6fcc2354a9a28f4db
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+
+COCOAPODS: 0.39.0
