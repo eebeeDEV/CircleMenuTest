@@ -63,14 +63,14 @@ class LMBtnLike: UIButton {
             if isSaved == true {
                 self.setImage(UIImage(named: selectedImage!), forState: .Normal)
                 anim.animateBackgroundColor(self, backColor: 0x3992C3, alpha: 1)
-                //self.setImage(UIImage(named: selectedImage!), forState: .Normal)
+                self.setImage(UIImage(named: selectedImage!), forState: .Normal)
                 self.layer.borderColor = UIColor(alpha: 1, red: 41, green: 81, blue: 109).CGColor
                 self.layer.borderWidth = 2
                 //self.enabled = false
             } else {
                 self.setImage(UIImage(named: selectedImage!), forState: .Normal)
                 anim.animateBackgroundColor(self, backColor: 0xE4E4E4, alpha: 1)
-                //self.setImage(UIImage(named: unSelectedImage!), forState: .Normal)
+                self.setImage(UIImage(named: unSelectedImage!), forState: .Normal)
                 self.layer.borderColor = UIColor.clearColor().CGColor
                 self.layer.borderWidth = 0
                 //self.enabled = true
