@@ -8,7 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate {
+class ViewController: UIViewController, UIGestureRecognizerDelegate, LMSelectLaiksDelegate {
+    
+    
+    
 
     let vw = LMSelectLaiks.fromNib()
     
@@ -30,11 +33,20 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         
 
         self.vw.sender = self
+        self.vw.delegate = self
 
         
     }
     
+    @IBAction func btnShow(sender: AnyObject) {
+        
+        self.vw.hidden = false
+        
+    }
     
+    func btnBack(sender: UIButton, hasLaikesSelected: Bool) {
+        self.vw.hidden = true
+    }
 
     
     

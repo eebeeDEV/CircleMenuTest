@@ -20,12 +20,22 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woman.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="xyZ-gQ-cft" userLabel="Selfie">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmm-tx-co9" userLabel="btnShow">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <connections>
+                                    <action selector="btnShow:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MJn-X3-oRZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="kmm-tx-co9" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="0Gm-pv-L97"/>
                             <constraint firstItem="xyZ-gQ-cft" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="BPi-su-2qU"/>
                             <constraint firstItem="xyZ-gQ-cft" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="L0i-b2-fed"/>
                             <constraint firstItem="xyZ-gQ-cft" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MuT-BO-5fc"/>
+                            <constraint firstItem="kmm-tx-co9" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="ONU-3M-sEO"/>
+                            <constraint firstItem="kmm-tx-co9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zhk-b3-rPm"/>
+                            <constraint firstItem="kmm-tx-co9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="dDy-Td-ghi"/>
                             <constraint firstItem="xyZ-gQ-cft" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="tJk-w2-1rz"/>
                         </constraints>
                     </view>

@@ -34,7 +34,7 @@ class LMBtnLike: UIButton {
     var x: CGFloat!
     var y: CGFloat!
     var selectedImage: String!
-    var unSelectedImage: String!
+//    var unSelectedImage: String!
     var likeDescr: String!
     var showTotals = false
     var anim = AnimationEngine()
@@ -64,15 +64,11 @@ class LMBtnLike: UIButton {
             if isSaved == true {
                 self.setImage(UIImage(named: selectedImage!), forState: .Normal)
                 anim.animateBackgroundColorLayer(self.layer, backColor: 0x29516D, alpha: 1)
-                //self.setImage(UIImage(named: selectedImage!), forState: .Normal)
                 self.layer.borderColor = UIColor(alpha: 1, red: 41, green: 81, blue: 109).CGColor
-                //self.enabled = false
             } else {
                 self.setImage(UIImage(named: selectedImage!), forState: .Normal)
                 anim.animateBackgroundColorLayer(self.layer, backColor: 0xE4E4E4, alpha: 1)
-                //self.setImage(UIImage(named: unSelectedImage!), forState: .Normal)
                 self.layer.borderColor = UIColor(alpha: 0.2, red: 0, green: 0, blue: 0).CGColor
-                //self.enabled = true
             }
         }
     }
@@ -88,12 +84,10 @@ class LMBtnLike: UIButton {
             super.init(frame: btnFrame)
             self.layer.cornerRadius = btnFrame.height / 2
             setLabel(laiksTotal)
-            self.unSelectedImage = "LikeLBL\(imageIndex)"
         } else {
             super.init(frame: frame)
             self.layer.cornerRadius = frame.height / 2
-            self.selectedImage = "Like\(imageIndex)"
-            self.unSelectedImage = "LikeDisabled\(imageIndex)"
+            self.selectedImage = "Like\(imageIndex)"            
         }
         
         

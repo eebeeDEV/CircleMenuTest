@@ -8,6 +8,14 @@
 
 import UIKit
 
+
+protocol LMSelectLaiksDelegate {
+    func btnBack(sender: UIButton, hasLaikesSelected: Bool)
+    
+}
+
+
+
 class LMSelectLaiks: UIView, LMBtnLikeDelegate {
     
   
@@ -22,6 +30,7 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
     var btnSelectedCount: Int = 0
     var showInfo = true
     var showTotals = false
+    var delegate: LMSelectLaiksDelegate?
 
     
     var menuStatus: enumStatus = enumStatus.menuLoaded {
@@ -33,22 +42,22 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
                 self.showButtons()
                 break
             case enumStatus.iconsVisible:
-                if self.btnSelectedCount > 0 {
-                    self.btnMain.animateImageTransition("LikeSave", glow: false)
-                } else {
-                    self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
-                }
+//                if self.btnSelectedCount > 0 {
+//                    self.btnMain.animateImageTransition("LikeSave", glow: false)
+//                } else {
+//                    self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
+//                }
                 break
             case enumStatus.iconsHidden:
                 break
             case enumStatus.iconsSelected:
-                self.btnMain.animateImageTransition("LikeSave", glow: false)
+//                self.btnMain.animateImageTransition("LikeSave", glow: false)
                 break
             case enumStatus.iconsDeselected:
-                self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
+//                self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
                 break
             case enumStatus.likesSaved:
-                self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
+//                self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
                 break
             }
         }
@@ -77,6 +86,7 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
     @IBOutlet weak var vwButtons: UIView!
     @IBOutlet weak var vwLikeDescr: UIView!
     @IBOutlet weak var lblLikeDescr: UILabel!
+    @IBOutlet weak var btnBack: UIButton!
     
   
     
@@ -109,8 +119,8 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
             break
         case enumStatus.likesSaved:
             // save the likes here
-            self.btnMain.animateGlowStop()
-            self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
+//            self.btnMain.animateGlowStop()
+//            self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
             hideButtons()
             break
         default:
@@ -121,6 +131,18 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
     }
   
     
+    @IBAction func btnBack(sender: UIButton) {
+        
+        if let delegate = self.delegate {
+            var laiksSelected: Bool = false
+            
+            if self.btnSelectedCount > 0 {
+                laiksSelected = true
+            }
+            delegate.btnBack(sender, hasLaikesSelected: laiksSelected)
+        }
+        
+    }
 
     
     override func awakeFromNib() {
@@ -260,6 +282,7 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
         
         self.animEngine.animateShow(self.btnMain, completion: nil)
         self.animEngine.animateButtonsDistribution(false)
+        self.animEngine.animateHide(self.btnMain, completion: nil)
         
         // set the status at the end of the proc!!
         self.menuStatus = enumStatus.iconsVisible
@@ -273,7 +296,7 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
         self.animEngine.animateButtonsOffScreen(false)
         // hide the laik info
         self.vwLaikDescrLeftConstraint.animateHide()
-        self.animEngine.animateHide(self.btnMain, completion: nil)
+//        self.animEngine.animateHide(self.btnMain, completion: nil)
         // set the status to hidden
         self.menuStatus = enumStatus.iconsHidden
     }
