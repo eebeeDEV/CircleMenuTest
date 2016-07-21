@@ -34,21 +34,21 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
                 break
             case enumStatus.iconsVisible:
                 if self.btnSelectedCount > 0 {
-                    self.btnMain.animateImageTransitionShape("LikeSave", glow: true)
+                    self.btnMain.animateImageTransition("LikeSave", glow: false)
                 } else {
-                    self.btnMain.animateImageTransitionShape("LikeStarOrange", glow: false)
+                    self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
                 }
                 break
             case enumStatus.iconsHidden:
                 break
             case enumStatus.iconsSelected:
-                self.btnMain.animateImageTransitionShape("LikeSave", glow: true)
+                self.btnMain.animateImageTransition("LikeSave", glow: false)
                 break
             case enumStatus.iconsDeselected:
-                self.btnMain.animateImageTransitionShape("LikeStarOrange", glow: false)
+                self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
                 break
             case enumStatus.likesSaved:
-                self.btnMain.animateImageTransitionShape("LikeStarOrange", glow: false)
+                self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
                 break
             }
         }
@@ -77,7 +77,7 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
     @IBOutlet weak var vwButtons: UIView!
     @IBOutlet weak var vwLikeDescr: UIView!
     @IBOutlet weak var lblLikeDescr: UILabel!
-    @IBOutlet weak var segSendReceive: UISegmentedControl!
+    
   
     
     @IBOutlet weak var vwLaikDescrLeftConstraint: LMPopXConstraint!
@@ -110,7 +110,7 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
         case enumStatus.likesSaved:
             // save the likes here
             self.btnMain.animateGlowStop()
-            self.btnMain.animateImageTransitionShape("LikeStarOrange", glow: false)
+            self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
             hideButtons()
             break
         default:
@@ -133,7 +133,7 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
         self.animEngine.animateShow(self.btnMain, duration: 0.8, delay: 3, completion: nil)
         // hide the liaksdescription view
         self.vwLaikDescrLeftConstraint.hideViewRight()
-        self.segSendReceive.selectedSegmentIndex = 0
+        
         
         // sow / hide the info text how to use the control
         if self.showInfo == false {
@@ -143,24 +143,7 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
     
 
     
-    @IBAction func segSendReceiveTapped(sender: UISegmentedControl) {
-        
-//        self.btnMain.pop_removeAllAnimations()
-//        self.hideButtons()
-//        self.resetButtons()
-//        
-//        if segSendReceive.selectedSegmentIndex == 0 {
-//            self.showTotals = false
-//        } else {
-//            self.showTotals = true
-//        }
-//        
-//        self.animEngine.animateShow(self.btnMain, duration: 0.3, delay: 0, completion: nil)
-//        self.createIcons()
-//        viewDidLoad = false
-        
-        
-    }
+
     
     
     
@@ -336,7 +319,7 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
                 self.vwLaikDescrLeftConstraint.animateHide()
                 self.laikLastIconClicked = -1
             } else {
-                self.animEngine.animateBackgroundColor(self.vwLikeDescr, backColor: sender.btnColor, alpha: 0.6)
+                self.animEngine.animateBackgroundColorView(self.vwLikeDescr, backColor: sender.btnColor, alpha: 0.6)
                 self.vwLaikDescrLeftConstraint.animateShow()
                 self.laikLastIconClicked = sender.index
             }

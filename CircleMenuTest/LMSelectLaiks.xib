@@ -14,16 +14,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gcv-xL-cmV" userLabel="vwMain">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
-                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VyZ-Np-ebP" userLabel="segSendReceive">
-                            <rect key="frame" x="313" y="60" width="267" height="29"/>
-                            <segments>
-                                <segment title="View send laiks"/>
-                                <segment title="View receiving laiks"/>
-                            </segments>
-                            <connections>
-                                <action selector="segSendReceiveTapped:" destination="iN0-l3-epB" eventType="valueChanged" id="qXz-NQ-x8r"/>
-                            </connections>
-                        </segmentedControl>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2sG-3C-Csm" userLabel="vwLaikDescr">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                             <subviews>
@@ -99,7 +89,7 @@ Once you selected the desired likes, tap on the save button in the middle to sen
                             <rect key="frame" x="0.0" y="352" width="600" height="238"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3i-Md-DZN" userLabel="btnMain">
-                                    <rect key="frame" x="272" y="91" width="56" height="56"/>
+                                    <rect key="frame" x="276" y="95" width="48" height="48"/>
                                     <state key="normal" image="LikeStarOrange"/>
                                     <connections>
                                         <action selector="btnMain:" destination="iN0-l3-epB" eventType="touchUpInside" id="Eal-BC-qcz"/>
@@ -116,8 +106,6 @@ Once you selected the desired likes, tap on the save button in the middle to sen
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="VyZ-Np-ebP" firstAttribute="top" secondItem="gcv-xL-cmV" secondAttribute="top" constant="60" id="1Wy-xN-0fH"/>
-                        <constraint firstAttribute="trailing" secondItem="VyZ-Np-ebP" secondAttribute="trailing" constant="20" id="4HB-dr-dm5"/>
                         <constraint firstItem="2sG-3C-Csm" firstAttribute="top" secondItem="gcv-xL-cmV" secondAttribute="top" id="7AK-3y-Ep4"/>
                         <constraint firstItem="2sG-3C-Csm" firstAttribute="width" secondItem="gcv-xL-cmV" secondAttribute="width" id="7nR-dt-Tl0"/>
                         <constraint firstAttribute="trailing" secondItem="AsK-Zj-KtL" secondAttribute="trailing" constant="30" id="8TM-Ix-3l5"/>
@@ -140,7 +128,6 @@ Once you selected the desired likes, tap on the save button in the middle to sen
             <connections>
                 <outlet property="btnMain" destination="Q3i-Md-DZN" id="duu-iz-BAi"/>
                 <outlet property="lblLikeDescr" destination="vd3-0Q-OlS" id="BAM-aP-feq"/>
-                <outlet property="segSendReceive" destination="VyZ-Np-ebP" id="oKU-Xj-kQR"/>
                 <outlet property="vwBackground" destination="1qi-o7-snS" id="lxb-mC-4dP"/>
                 <outlet property="vwButtons" destination="Vts-gX-6Tv" id="Sn7-GF-84I"/>
                 <outlet property="vwInfo" destination="AsK-Zj-KtL" id="Hmf-M2-6Uz"/>
@@ -152,6 +139,6 @@ Once you selected the desired likes, tap on the save button in the middle to sen
         </view>
     </objects>
     <resources>
-        <image name="LikeStarOrange" width="56" height="56"/>
+        <image name="LikeStarOrange" width="48" height="48"/>
     </resources>
 </document>

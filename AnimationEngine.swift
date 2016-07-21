@@ -20,12 +20,19 @@ class AnimationEngine {
     }
     
 
-    func animateBackgroundColor(view: UIView, backColor: Int, alpha: CGFloat){
+    func animateBackgroundColorView(view: UIView, backColor: Int, alpha: CGFloat){
         
         let colorAnim = POPBasicAnimation(propertyNamed: kPOPViewBackgroundColor)
         colorAnim.toValue = UIColor(netHex: backColor, alpha: alpha)
         colorAnim.duration = 0.5
         view.pop_addAnimation(colorAnim, forKey: "changeColor")
+    }
+    func animateBackgroundColorLayer(layer: CALayer, backColor: Int, alpha: CGFloat){
+        
+        let colorAnim = POPBasicAnimation(propertyNamed: kPOPLayerBackgroundColor)
+        colorAnim.toValue = UIColor(netHex: backColor, alpha: alpha)
+        colorAnim.duration = 0.5
+        layer.pop_addAnimation(colorAnim, forKey: "changeColor")
     }
     
     func animateHide(view: UIView, duration: CFTimeInterval = 0.5, delay: CFTimeInterval = 0, completion:((finished: Bool) -> Void)?) {

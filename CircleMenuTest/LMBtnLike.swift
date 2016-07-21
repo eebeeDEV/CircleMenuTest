@@ -48,12 +48,13 @@ class LMBtnLike: UIButton {
         didSet{            
             if isTapped == true {
                 self.setImage(UIImage(named: selectedImage!), forState: .Normal)
-                anim.animateBackgroundColor(self, backColor: 0x3992C3, alpha: 1)
+                anim.animateBackgroundColorLayer(self.layer, backColor: 0x3992C3, alpha: 1)
+                self.layer.borderColor = UIColor(alpha: 0.2, red: 255, green: 255, blue: 255).CGColor
                 
             } else {
                 self.setImage(UIImage(named: selectedImage!), forState: .Normal)
-                anim.animateBackgroundColor(self, backColor: 0xE4E4E4, alpha: 1)
-                //self.setImage(UIImage(named: unSelectedImage!), forState: .Normal)
+                anim.animateBackgroundColorLayer(self.layer, backColor: 0xE4E4E4, alpha: 1)
+                self.layer.borderColor = UIColor(alpha: 0.2, red: 0, green: 0, blue: 0).CGColor
             }
         }
     }
@@ -62,17 +63,15 @@ class LMBtnLike: UIButton {
         didSet{
             if isSaved == true {
                 self.setImage(UIImage(named: selectedImage!), forState: .Normal)
-                anim.animateBackgroundColor(self, backColor: 0x3992C3, alpha: 1)
-                self.setImage(UIImage(named: selectedImage!), forState: .Normal)
+                anim.animateBackgroundColorLayer(self.layer, backColor: 0x29516D, alpha: 1)
+                //self.setImage(UIImage(named: selectedImage!), forState: .Normal)
                 self.layer.borderColor = UIColor(alpha: 1, red: 41, green: 81, blue: 109).CGColor
-                self.layer.borderWidth = 2
                 //self.enabled = false
             } else {
                 self.setImage(UIImage(named: selectedImage!), forState: .Normal)
-                anim.animateBackgroundColor(self, backColor: 0xE4E4E4, alpha: 1)
-                self.setImage(UIImage(named: unSelectedImage!), forState: .Normal)
-                self.layer.borderColor = UIColor.clearColor().CGColor
-                self.layer.borderWidth = 0
+                anim.animateBackgroundColorLayer(self.layer, backColor: 0xE4E4E4, alpha: 1)
+                //self.setImage(UIImage(named: unSelectedImage!), forState: .Normal)
+                self.layer.borderColor = UIColor(alpha: 0.2, red: 0, green: 0, blue: 0).CGColor
                 //self.enabled = true
             }
         }
@@ -98,7 +97,8 @@ class LMBtnLike: UIButton {
         }
         
         
-        
+        self.layer.borderColor = UIColor(alpha: 0.5, red: 0, green: 0, blue: 0).CGColor
+        self.layer.borderWidth = 1
         
         self.showTotals = showTotals
         self.isTapped = false
@@ -118,10 +118,10 @@ class LMBtnLike: UIButton {
         if self.isSaved == false {
             self.addTarget(self, action: #selector(btnClicked), forControlEvents: UIControlEvents.TouchUpInside)
             
-            self.addTarget(self, action: #selector(scaleToSmall), forControlEvents: UIControlEvents.TouchDown)
-            self.addTarget(self, action: #selector(scaleToSmall), forControlEvents: UIControlEvents.TouchDragEnter)
-            self.addTarget(self, action: #selector(scaleAnimation), forControlEvents: UIControlEvents.TouchUpInside)
-            self.addTarget(self, action: #selector(scaleDefault), forControlEvents: UIControlEvents.TouchDragExit)
+//            self.addTarget(self, action: #selector(scaleToSmall), forControlEvents: UIControlEvents.TouchDown)
+//            self.addTarget(self, action: #selector(scaleToSmall), forControlEvents: UIControlEvents.TouchDragEnter)
+//            self.addTarget(self, action: #selector(scaleAnimation), forControlEvents: UIControlEvents.TouchUpInside)
+//            self.addTarget(self, action: #selector(scaleDefault), forControlEvents: UIControlEvents.TouchDragExit)
         }
     }
     
