@@ -15,13 +15,13 @@ import pop
 
 
 
-protocol LMBtnLikeDelegate {
-    func btnSelectionChanged(sender: LMBtnLike, isSelected: Bool)
+protocol LMIconBtnDelegate {
+    func btnSelectionChanged(sender: LMIconBtn, isSelected: Bool)
 }
 
 
 
-class LMBtnLike: UIButton {
+class LMIconBtn: UIButton {
     
     let lblTotal = UILabel()
     var laiksTotal : Int = 0
@@ -33,43 +33,26 @@ class LMBtnLike: UIButton {
     
     var x: CGFloat!
     var y: CGFloat!
-    var selectedImage: String!
-//    var unSelectedImage: String!
+    var iconImage: String!
+
     var likeDescr: String!
     var showTotals = false
     var anim = AnimationEngine()
     
     
     
-    var delegate: LMBtnLikeDelegate?
+    var delegate: LMIconBtnDelegate?
     
     
     var isTapped: Bool = false {
-        didSet{            
-            if isTapped == true {
-                self.setImage(UIImage(named: selectedImage!), forState: .Normal)
-                anim.animateBackgroundColorLayer(self.layer, backColor: 0x3992C3, alpha: 1)
-                self.layer.borderColor = UIColor(alpha: 0.2, red: 255, green: 255, blue: 255).CGColor
-                
-            } else {
-                self.setImage(UIImage(named: selectedImage!), forState: .Normal)
-                anim.animateBackgroundColorLayer(self.layer, backColor: 0xE4E4E4, alpha: 1)
-                self.layer.borderColor = UIColor(alpha: 0.2, red: 0, green: 0, blue: 0).CGColor
-            }
+        didSet{
+            self.setIconColor()
         }
     }
     
     var isSaved: Bool = false {
         didSet{
-            if isSaved == true {
-                self.setImage(UIImage(named: selectedImage!), forState: .Normal)
-                anim.animateBackgroundColorLayer(self.layer, backColor: 0x29516D, alpha: 1)
-                self.layer.borderColor = UIColor(alpha: 1, red: 41, green: 81, blue: 109).CGColor
-            } else {
-                self.setImage(UIImage(named: selectedImage!), forState: .Normal)
-                anim.animateBackgroundColorLayer(self.layer, backColor: 0xE4E4E4, alpha: 1)
-                self.layer.borderColor = UIColor(alpha: 0.2, red: 0, green: 0, blue: 0).CGColor
-            }
+            self.setIconColor()
         }
     }
  
@@ -87,23 +70,40 @@ class LMBtnLike: UIButton {
         } else {
             super.init(frame: frame)
             self.layer.cornerRadius = frame.height / 2
-            self.selectedImage = "Like\(imageIndex)"            
         }
         
+        self.iconImage = "Like\(imageIndex)"
+        self.setImage(UIImage(named: self.iconImage!), forState: .Normal)
         
         self.layer.borderColor = UIColor(alpha: 0.5, red: 0, green: 0, blue: 0).CGColor
         self.layer.borderWidth = 1
         
         self.showTotals = showTotals
-        self.isTapped = false
-        
-        if showTotals == true {
-            setLabel(laiksTotal)
-        }
+        self.isTapped = showTotals
+        self.setIconColor()
     }
     
  
 
+    func setIconColor(){
+        
+        if self.isSaved == true {
+            anim.animateBackgroundColorLayer(self.layer, backColor: 0x29516D, alpha: 1)
+            self.layer.borderColor = UIColor(netHex: 0x29516D, alpha: 1).CGColor
+        } else if self.isTapped == true {
+            anim.animateBackgroundColorLayer(self.layer, backColor: 0x3992C3, alpha: 1)
+            self.layer.borderColor = UIColor(netHex: 0x3992C3, alpha: 1).CGColor
+        } else {
+            anim.animateBackgroundColorLayer(self.layer, backColor: 0xE4E4E4, alpha: 1)
+            self.layer.borderColor = UIColor(netHex: 0x3992C3, alpha: 1).CGColor
+        }
+        
+
+        
+        
+    }
+    
+    
     
     
     
@@ -142,7 +142,7 @@ class LMBtnLike: UIButton {
         
     }
     
-    func btnClicked(sender: LMBtnLike){
+    func btnClicked(sender: LMIconBtn){
         if (sender == self){
             if self.showTotals == false {
                 self.isTapped = !self.isTapped

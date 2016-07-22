@@ -1,5 +1,5 @@
 //
-//  LMSelectLaiks.swift
+//  LMIconMenu.swift
 //  CircleMenuTest
 //
 //  Created by Eric Bracke on 19/06/16.
@@ -9,55 +9,57 @@
 import UIKit
 
 
-protocol LMSelectLaiksDelegate {
+protocol LMIconMenuDelegate {
     func btnBack(sender: UIButton, hasLaikesSelected: Bool)
     
 }
 
 
+struct LMIconCollection{
+    var laikIcons: [Int] = []
+    var laikColors: [Int] = []
+    var laikDescriptions: [String] = []
+    var laikSaved: [Bool] = []
+}
 
-class LMSelectLaiks: UIView, LMBtnLikeDelegate {
+
+
+class LMIconMenu: UIView, LMIconBtnDelegate {
     
-  
     
-    var laikIcons = [3,4,7,5,8,9]
-    let laikColors = [0x50E3C2,0xB8E986,0x4A90E2,0x8B572A,0x4A90E2,0x9B9B9B]
-    let laikDescriptions = ["persons like your dress","persons like your eyes","persons like your smile","persons like your hair","persons like the way you talk","persons like the way you move"]
-    let laikSaved = [false,true,false,false,true,false]
+    var iconCollection: LMIconCollection! {
+        didSet{
+            self.menuStatus = .menuLoaded
+        }
+    }
+    
+
+    
     var laikLastIconClicked: Int = -1
-    var btnIcons = [LMBtnLike]()
+    var btnIcons = [LMIconBtn]()
     var sender: UIViewController!
     var btnSelectedCount: Int = 0
-    var showInfo = true
     var showTotals = false
-    var delegate: LMSelectLaiksDelegate?
+    var delegate: LMIconMenuDelegate?
+    
+    var showInfo = true {
+        didSet{
+            self.vwInfo.hidden = !showInfo
+        }
+    }
 
     
     var menuStatus: enumStatus = enumStatus.menuLoaded {
         didSet{
             switch self.menuStatus {
             case enumStatus.menuLoaded:
+                // show the main button with a 3sec delay
+                self.animEngine.animateShow(self.btnMain, duration: 0.8, delay: 3, completion: nil)
                 break
             case enumStatus.iconsCreated:
                 self.showButtons()
                 break
-            case enumStatus.iconsVisible:
-//                if self.btnSelectedCount > 0 {
-//                    self.btnMain.animateImageTransition("LikeSave", glow: false)
-//                } else {
-//                    self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
-//                }
-                break
-            case enumStatus.iconsHidden:
-                break
-            case enumStatus.iconsSelected:
-//                self.btnMain.animateImageTransition("LikeSave", glow: false)
-                break
-            case enumStatus.iconsDeselected:
-//                self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
-                break
-            case enumStatus.likesSaved:
-//                self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
+            default:
                 break
             }
         }
@@ -107,24 +109,10 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
         switch self.menuStatus {
         case enumStatus.menuLoaded:
             self.createIcons()
-            break
         case enumStatus.iconsCreated:
             showButtons()
             break
-        case enumStatus.iconsHidden:
-            showButtons()
-            break
-        case enumStatus.iconsVisible:
-            hideButtons()
-            break
-        case enumStatus.likesSaved:
-            // save the likes here
-//            self.btnMain.animateGlowStop()
-//            self.btnMain.animateImageTransition("LikeStarOrange", glow: false)
-            hideButtons()
-            break
         default:
-            hideButtons()
             break
         }
 
@@ -151,8 +139,6 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
         self.vwBackground.layer.cornerRadius = 4
         self.btnMain.alpha = 0
         self.animEngine = AnimationEngine()
-        // show the main button with a 3sec delay
-        self.animEngine.animateShow(self.btnMain, duration: 0.8, delay: 3, completion: nil)
         // hide the liaksdescription view
         self.vwLaikDescrLeftConstraint.hideViewRight()
         
@@ -172,9 +158,6 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
     
     
     func createIcons(){
-        
-
-            
             
             print("creating icons")
             
@@ -182,23 +165,24 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
             btnIcons.removeAll()
             
             var angle: CGFloat = 0.0
-            let increm: CGFloat = 360.0 / CGFloat(self.laikIcons.count)
+            let increm: CGFloat = 360.0 / CGFloat(self.iconCollection.laikIcons.count)
             let radius = Float(lmCalcSizeFromSixPlusBase(100))
             let radiusOffScreen = Float(UIScreen.mainScreen().bounds.size.height)
             let centralPoint = self.btnMain.center
+        
+//            print("centralPoint \(centralPoint)")
+        
             
             
-            
-            
-            for i in (0..<self.laikIcons.count) {
-                let c = self.laikIcons[i]
-                let btn: LMBtnLike = LMBtnLike(frame: self.btnMain.frame, imageIndex: c, laiksTotal: c, showTotals: self.showTotals)
+            for i in (0..<self.iconCollection.laikIcons.count) {
+                let c = self.iconCollection.laikIcons[i]
+                let btn: LMIconBtn = LMIconBtn(frame: self.btnMain.frame, imageIndex: c, laiksTotal: c, showTotals: self.showTotals)
                 
                 // set the description, index, color ans status
-                btn.likeDescr = "\(c) \(laikDescriptions[i])"
+                btn.likeDescr = "\(c) \(self.iconCollection.laikDescriptions[i])"
                 btn.index = i
-                btn.btnColor = self.laikColors[i]
-                btn.isTapped = false
+                btn.btnColor = self.iconCollection.laikColors[i]
+                //btn.isTapped = false
                 // set the points to move the icon to
                 btn.btnCirclePoint = self.specificPointOnCircle(radius, center: centralPoint, angle: angle)
                 btn.btnCircleOffScreenPoint = self.specificPointOnCircle(radiusOffScreen, center: centralPoint, angle: angle)
@@ -207,11 +191,9 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
                 angle = angle + increm
                 // set the delegate
                 btn.delegate = self
-                // if selected, add it to the btnSelectedCount
-                //self.btnSelectedCount = self.btnSelectedCount + Int(self.laikSaved[i])
-                // hide the iscon
+                // hide the icon
                 btn.alpha = 0
-                btn.isSaved = self.laikSaved[i]
+                btn.isSaved = self.iconCollection.laikSaved[i]
                 btn.setupTargets()
                 // add it to the view
                 self.vwButtons.addSubview(btn)
@@ -219,7 +201,8 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
                 btnIcons.append(btn)
                 self.bringSubviewToFront(btn)
             }
-            
+        
+            self.btnSelectedCount = 0
 
             // load the icons in the animation engine memory
             self.animEngine.loadButtonsInMemory(self.btnIcons)
@@ -260,8 +243,8 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
         
         switch self.menuStatus {
         case enumStatus.menuLoaded:
-            self.animEngine.animateShow(self.btnMain, duration: 0, delay: 0, completion: nil)
-                self.createIcons()
+            self.btnMain.pop_removeAllAnimations()
+            self.createIcons()
             break
         case enumStatus.iconsCreated:
             self.showButtons()
@@ -279,8 +262,6 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
     
     func showButtons(){
         
-        
-        self.animEngine.animateShow(self.btnMain, completion: nil)
         self.animEngine.animateButtonsDistribution(false)
         self.animEngine.animateHide(self.btnMain, completion: nil)
         
@@ -328,7 +309,7 @@ class LMSelectLaiks: UIView, LMBtnLikeDelegate {
     
 
     
-    func btnSelectionChanged(sender: LMBtnLike, isSelected: Bool) {
+    func btnSelectionChanged(sender: LMIconBtn, isSelected: Bool) {
         
         
         

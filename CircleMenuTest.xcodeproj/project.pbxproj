@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		078FD97D1D18730200A3CA34 /* LMBtnLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FD97C1D18730200A3CA34 /* LMBtnLike.swift */; };
+		078FD97D1D18730200A3CA34 /* LMIconBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FD97C1D18730200A3CA34 /* LMIconBtn.swift */; };
 		079A3D4A1D17CBD1000467AA /* woman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 079A3D491D17CBD1000467AA /* woman.jpg */; };
 		07A15A291D2EC96F00314FC3 /* AnimationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A15A281D2EC96F00314FC3 /* AnimationEngine.swift */; };
 		07B2210D1D314EB700A4CFE5 /* LMConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B2210C1D314EB700A4CFE5 /* LMConstraint.swift */; };
@@ -17,15 +17,16 @@
 		07C8A33E1D16928900A4152D /* CircleMenuTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07C8A33C1D16928900A4152D /* CircleMenuTest.xcdatamodeld */; };
 		07C8A3401D16928900A4152D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07C8A33F1D16928900A4152D /* Assets.xcassets */; };
 		07C8A3431D16928900A4152D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C8A3411D16928900A4152D /* LaunchScreen.storyboard */; };
-		07C8A34B1D1734EB00A4152D /* LMSelectLaiks.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07C8A34A1D1734EB00A4152D /* LMSelectLaiks.xib */; };
-		07C8A34D1D17350400A4152D /* LMSelectLaiks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C8A34C1D17350400A4152D /* LMSelectLaiks.swift */; };
+		07C8A34B1D1734EB00A4152D /* LMIconMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07C8A34A1D1734EB00A4152D /* LMIconMenu.xib */; };
+		07C8A34D1D17350400A4152D /* LMIconMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C8A34C1D17350400A4152D /* LMIconMenu.swift */; };
 		07C8A34F1D173E4300A4152D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C8A34E1D173E4300A4152D /* Extensions.swift */; };
+		07D1C9B31D426E030002E6CA /* LMIconBtn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07D1C9B21D426E030002E6CA /* LMIconBtn.xib */; };
 		CA4CBDF9C8DC555DB1517DAA /* Pods_CircleMenuTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A513379C5B78BFA211B65D /* Pods_CircleMenuTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		00EBEEC55D38AF135B206B73 /* Pods-CircleMenuTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CircleMenuTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-CircleMenuTest/Pods-CircleMenuTest.release.xcconfig"; sourceTree = "<group>"; };
-		078FD97C1D18730200A3CA34 /* LMBtnLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMBtnLike.swift; sourceTree = "<group>"; };
+		078FD97C1D18730200A3CA34 /* LMIconBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMIconBtn.swift; sourceTree = "<group>"; };
 		079A3D491D17CBD1000467AA /* woman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = woman.jpg; sourceTree = "<group>"; };
 		07A15A241D2EC02F00314FC3 /* CircleMenuTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CircleMenuTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		07A15A281D2EC96F00314FC3 /* AnimationEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationEngine.swift; sourceTree = "<group>"; };
@@ -38,9 +39,10 @@
 		07C8A33F1D16928900A4152D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07C8A3421D16928900A4152D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07C8A3441D16928900A4152D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07C8A34A1D1734EB00A4152D /* LMSelectLaiks.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMSelectLaiks.xib; sourceTree = "<group>"; };
-		07C8A34C1D17350400A4152D /* LMSelectLaiks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMSelectLaiks.swift; sourceTree = "<group>"; };
+		07C8A34A1D1734EB00A4152D /* LMIconMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMIconMenu.xib; sourceTree = "<group>"; };
+		07C8A34C1D17350400A4152D /* LMIconMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMIconMenu.swift; sourceTree = "<group>"; };
 		07C8A34E1D173E4300A4152D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		07D1C9B21D426E030002E6CA /* LMIconBtn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMIconBtn.xib; sourceTree = "<group>"; };
 		A0A513379C5B78BFA211B65D /* Pods_CircleMenuTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CircleMenuTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2B3E2935EF6AB523D58ABF8 /* Pods-CircleMenuTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CircleMenuTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CircleMenuTest/Pods-CircleMenuTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,11 +97,12 @@
 				07C8A3411D16928900A4152D /* LaunchScreen.storyboard */,
 				07C8A3441D16928900A4152D /* Info.plist */,
 				07C8A33C1D16928900A4152D /* CircleMenuTest.xcdatamodeld */,
-				07C8A34A1D1734EB00A4152D /* LMSelectLaiks.xib */,
-				07C8A34C1D17350400A4152D /* LMSelectLaiks.swift */,
+				07C8A34A1D1734EB00A4152D /* LMIconMenu.xib */,
+				07C8A34C1D17350400A4152D /* LMIconMenu.swift */,
 				07C8A34E1D173E4300A4152D /* Extensions.swift */,
 				079A3D491D17CBD1000467AA /* woman.jpg */,
-				078FD97C1D18730200A3CA34 /* LMBtnLike.swift */,
+				07D1C9B21D426E030002E6CA /* LMIconBtn.xib */,
+				078FD97C1D18730200A3CA34 /* LMIconBtn.swift */,
 				07A15A241D2EC02F00314FC3 /* CircleMenuTest-Bridging-Header.h */,
 			);
 			path = CircleMenuTest;
@@ -184,11 +187,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07D1C9B31D426E030002E6CA /* LMIconBtn.xib in Resources */,
 				07C8A3431D16928900A4152D /* LaunchScreen.storyboard in Resources */,
 				079A3D4A1D17CBD1000467AA /* woman.jpg in Resources */,
 				07C8A3401D16928900A4152D /* Assets.xcassets in Resources */,
 				07C8A33B1D16928900A4152D /* Main.storyboard in Resources */,
-				07C8A34B1D1734EB00A4152D /* LMSelectLaiks.xib in Resources */,
+				07C8A34B1D1734EB00A4152D /* LMIconMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,13 +252,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				07A15A291D2EC96F00314FC3 /* AnimationEngine.swift in Sources */,
-				078FD97D1D18730200A3CA34 /* LMBtnLike.swift in Sources */,
+				078FD97D1D18730200A3CA34 /* LMIconBtn.swift in Sources */,
 				07C8A34F1D173E4300A4152D /* Extensions.swift in Sources */,
 				07B2210D1D314EB700A4CFE5 /* LMConstraint.swift in Sources */,
 				07C8A3381D16928900A4152D /* ViewController.swift in Sources */,
 				07C8A33E1D16928900A4152D /* CircleMenuTest.xcdatamodeld in Sources */,
 				07C8A3361D16928900A4152D /* AppDelegate.swift in Sources */,
-				07C8A34D1D17350400A4152D /* LMSelectLaiks.swift in Sources */,
+				07C8A34D1D17350400A4152D /* LMIconMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

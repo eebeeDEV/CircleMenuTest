@@ -12,10 +12,10 @@ import pop
 
 class AnimationEngine {
   
-    var icons: [LMBtnLike]!
+    var icons: [LMIconBtn]!
 
     
-    func loadButtonsInMemory(icons: [LMBtnLike]){
+    func loadButtonsInMemory(icons: [LMIconBtn]){
         self.icons = icons
     }
     
@@ -47,7 +47,7 @@ class AnimationEngine {
         anim.beginTime = CACurrentMediaTime() + delay
         view.pop_addAnimation(anim, forKey: "hide")        
         anim.completionBlock = {(animation, finished) in
-            print("finished animateHide")
+//            print("finished animateHide")
         }
     }
     
@@ -66,7 +66,7 @@ class AnimationEngine {
         anim.beginTime = CACurrentMediaTime() + delay
         view.pop_addAnimation(anim, forKey: "show")
         anim.completionBlock = {(animation, finished) in
-            print("finished animateShow")
+//            print("finished animateShow")
         }
     }
     
@@ -103,7 +103,7 @@ class AnimationEngine {
                 }
                 btn.pop_addAnimation(alphaAnim, forKey: "alpha")
                 alphaAnim.completionBlock = {(animation, finished) in
-                    print("distribution alpha")
+//                    print("distribution alpha")
                 }
                 
                 let moveAnim = POPSpringAnimation(propertyNamed: kPOPViewCenter)
@@ -115,7 +115,7 @@ class AnimationEngine {
                 }
                 btn.pop_addAnimation(moveAnim, forKey: "move")
                 moveAnim.completionBlock = {(animation, finished) in
-                    print("distribution move")
+//                    print("distribution move")
                 }
             }
         }
@@ -178,7 +178,7 @@ class AnimationEngine {
                 moveAnim.beginTime = CACurrentMediaTime() + Double(i) * 0.05
                 btn.pop_addAnimation(moveAnim, forKey: "toCenter")
                 moveAnim.completionBlock = {(animation, finished) in
-                    print("center move")
+//                    print("center move")
                 }
                 
                 let alphaAnim: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
@@ -189,7 +189,7 @@ class AnimationEngine {
                 }
                 btn.pop_addAnimation(alphaAnim, forKey: "alpha")
                 alphaAnim.completionBlock = {(animation, finished) in
-                    print("center alpha")
+//                    print("center alpha")
                 }
             }
 
@@ -219,7 +219,7 @@ class AnimationEngine {
             
             btn.pop_addAnimation(moveAnim, forKey: "move")
             moveAnim.completionBlock = {(animation, finished) in
-                print("offscreen move")
+//                print("offscreen move")
             }
             
             let alphaAnim: POPBasicAnimation = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
@@ -231,7 +231,7 @@ class AnimationEngine {
             }
             btn.pop_addAnimation(alphaAnim, forKey: "alpha")
             alphaAnim.completionBlock = {(animation, finished) in
-                print("offscreen alpha")
+//                print("offscreen alpha")
             }
             
 //            alphaAnim.completionBlock = {(animation, finished) in
