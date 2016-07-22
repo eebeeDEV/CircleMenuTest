@@ -21,7 +21,17 @@ protocol LMIconBtnDelegate {
 
 
 
-class LMIconBtn: UIButton {
+class LMIconBtn: UIView {
+    
+    
+    @IBOutlet weak var vwCnt: UIView!
+    @IBOutlet weak var lblCnt: UILabel!
+    @IBOutlet weak var btnIcon: UIButton!
+    @IBOutlet weak var constrBtnTop: NSLayoutConstraint!
+    @IBOutlet weak var constrBtnTrail: NSLayoutConstraint!
+
+    
+    
     
     let lblTotal = UILabel()
     var laiksTotal : Int = 0
@@ -57,45 +67,59 @@ class LMIconBtn: UIButton {
     }
  
     
-    init(frame: CGRect, imageIndex: Int, laiksTotal: Int, showTotals: Bool) {
+    func inititialize(frame: CGRect, imageIndex: Int, laiksTotal: Int, showTotals: Bool) {
+  
         
         if showTotals ==  true {
+            self.vwCnt.layer.cornerRadius = self.vwCnt.frame.height / 2
             self.laiksTotal = laiksTotal
-            var btnFrame: CGRect!
-            let factor: CGFloat = 1.16666666666666666667
-            btnFrame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width * factor, frame.size.height * factor)
-            super.init(frame: btnFrame)
-            self.layer.cornerRadius = btnFrame.height / 2
-            setLabel(laiksTotal)
+            setLabel(laiksTotal)            
         } else {
-            super.init(frame: frame)
-            self.layer.cornerRadius = frame.height / 2
+            self.vwCnt.hidden = true
         }
         
-        self.iconImage = "Like\(imageIndex)"
-        self.setImage(UIImage(named: self.iconImage!), forState: .Normal)
+        self.frame = frame
+        self.btnIcon.layer.cornerRadius = frame.height / 2
         
-        self.layer.borderColor = UIColor(alpha: 0.5, red: 0, green: 0, blue: 0).CGColor
-        self.layer.borderWidth = 1
+        self.iconImage = "Like\(imageIndex)"
+        self.btnIcon.setImage(UIImage(named: self.iconImage!),forState: .Normal)
+        
+        self.btnIcon.layer.borderColor = UIColor(alpha: 0.5, red: 0, green: 0, blue: 0).CGColor
+        self.btnIcon.layer.borderWidth = 1
         
         self.showTotals = showTotals
         self.isTapped = showTotals
         self.setIconColor()
+        
     }
+    
+    
+    @IBAction func btnIcon(sender: UIButton) {
+        self.btnClicked(self)
+        
+    }
+    
+    
     
  
 
     func setIconColor(){
         
         if self.isSaved == true {
-            anim.animateBackgroundColorLayer(self.layer, backColor: 0x29516D, alpha: 1)
-            self.layer.borderColor = UIColor(netHex: 0x29516D, alpha: 1).CGColor
+            anim.animateBackgroundColorLayer(self.btnIcon.layer, backColor: 0x29516D, alpha: 1)
+            self.btnIcon.layer.borderColor = UIColor(netHex: 0x29516D, alpha: 1).CGColor
+            self.vwCnt.layer.borderColor = UIColor(netHex: 0x29516D, alpha: 1).CGColor
+            self.vwCnt.layer.borderWidth = 2
         } else if self.isTapped == true {
-            anim.animateBackgroundColorLayer(self.layer, backColor: 0x3992C3, alpha: 1)
-            self.layer.borderColor = UIColor(netHex: 0x3992C3, alpha: 1).CGColor
+            anim.animateBackgroundColorLayer(self.btnIcon.layer, backColor: 0x3992C3, alpha: 1)
+            self.btnIcon.layer.borderColor = UIColor(netHex: 0x3992C3, alpha: 1).CGColor
+            self.vwCnt.layer.borderColor = UIColor(netHex: 0x3992C3, alpha: 1).CGColor
+            self.vwCnt.layer.borderWidth = 2
         } else {
-            anim.animateBackgroundColorLayer(self.layer, backColor: 0xE4E4E4, alpha: 1)
-            self.layer.borderColor = UIColor(netHex: 0x3992C3, alpha: 1).CGColor
+            anim.animateBackgroundColorLayer(self.btnIcon.layer, backColor: 0xE4E4E4, alpha: 1)
+            self.btnIcon.layer.borderColor = UIColor(netHex: 0x3992C3, alpha: 1).CGColor
+            self.vwCnt.layer.borderColor = UIColor(netHex: 0xE4E4E4, alpha: 1).CGColor
+            self.vwCnt.layer.borderWidth = 2
         }
         
 
@@ -103,19 +127,14 @@ class LMIconBtn: UIButton {
         
     }
     
-    
+
     
     
     
     func setupTargets(){
         
         if self.isSaved == false {
-            self.addTarget(self, action: #selector(btnClicked), forControlEvents: UIControlEvents.TouchUpInside)
-            
-//            self.addTarget(self, action: #selector(scaleToSmall), forControlEvents: UIControlEvents.TouchDown)
-//            self.addTarget(self, action: #selector(scaleToSmall), forControlEvents: UIControlEvents.TouchDragEnter)
-//            self.addTarget(self, action: #selector(scaleAnimation), forControlEvents: UIControlEvents.TouchUpInside)
-//            self.addTarget(self, action: #selector(scaleDefault), forControlEvents: UIControlEvents.TouchDragExit)
+            self.btnIcon.addTarget(self, action: #selector(btnClicked), forControlEvents: UIControlEvents.TouchUpInside)  
         }
     }
     
@@ -127,18 +146,20 @@ class LMIconBtn: UIButton {
     
     func setLabel(total:Int){
         
-        let width: CGFloat = 21.0
-        let height: CGFloat = 21.0
-        let x = self.frame.width - width - 8
-        let y: CGFloat = 5
+//        let width: CGFloat = 21.0
+//        let height: CGFloat = 21.0
+//        let x = self.frame.width - width - 8
+//        let y: CGFloat = 5
+//        
+//        
+//        self.lblTotal.text = "\(total)"
+//        self.lblTotal.frame = CGRectMake(x , y, width, height)
+//        self.lblTotal.font = UIFont(name: "AvenirNext-Bold", size: 12)
+//        self.lblTotal.textAlignment = NSTextAlignment.Center
+//        self.lblTotal.alpha = 0.6
+//        self.addSubview(lblTotal)
         
-        
-        self.lblTotal.text = "\(total)"
-        self.lblTotal.frame = CGRectMake(x , y, width, height)
-        self.lblTotal.font = UIFont(name: "AvenirNext-Bold", size: 12)
-        self.lblTotal.textAlignment = NSTextAlignment.Center
-        self.lblTotal.alpha = 0.6
-        self.addSubview(lblTotal)
+        self.lblCnt.text = "\(total)"
         
     }
     

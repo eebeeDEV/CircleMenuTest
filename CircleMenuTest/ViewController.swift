@@ -29,18 +29,18 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, LMIconMenuD
         var iconColl: LMIconCollection = LMIconCollection()
         
         // uncomment for check totals
-//        iconColl.laikIcons = [3,4,7,5,8,9]
-//        iconColl.laikColors = [0x3992C3,0x3992C3,0x3992C3,0x3992C3,0x3992C3,0x3992C3]
-//        iconColl.laikDescriptions = ["persons like your dress","persons like your eyes","persons like your smile","persons like your hair","persons like the way you talk","persons like the way you move"]
-//        iconColl.laikSaved = [false,false,false,false,false,false]
-//        self.vw.showTotals = true
-        
-        // uncomment for give laiks
         iconColl.laikIcons = [3,4,7,5,8,9]
         iconColl.laikColors = [0x3992C3,0x3992C3,0x3992C3,0x3992C3,0x3992C3,0x3992C3]
-        iconColl.laikDescriptions = ["","","","","",""]
-        iconColl.laikSaved = [false,true,false,false,true,false]
-        self.vw.showTotals = false
+        iconColl.laikDescriptions = ["persons like your dress","persons like your eyes","persons like your smile","persons like your hair","persons like the way you talk","persons like the way you move"]
+        iconColl.laikSaved = [false,false,false,false,false,false]
+        self.vw.showTotals = true
+        
+        // uncomment for give laiks
+//        iconColl.laikIcons = [3,4,7,5,8,9]
+//        iconColl.laikColors = [0x3992C3,0x3992C3,0x3992C3,0x3992C3,0x3992C3,0x3992C3]
+//        iconColl.laikDescriptions = ["","","","","",""]
+//        iconColl.laikSaved = [false,true,false,false,true,false]
+//        self.vw.showTotals = false
         
         
         vw.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)

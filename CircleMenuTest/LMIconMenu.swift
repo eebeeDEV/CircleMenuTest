@@ -175,28 +175,35 @@ class LMIconMenu: UIView, LMIconBtnDelegate {
             
             
             for i in (0..<self.iconCollection.laikIcons.count) {
+                
                 let c = self.iconCollection.laikIcons[i]
-                let btn: LMIconBtn = LMIconBtn(frame: self.btnMain.frame, imageIndex: c, laiksTotal: c, showTotals: self.showTotals)
+                let btn = LMIconBtn.fromNib()
+                
+                btn.inititialize(self.btnMain.frame, imageIndex: c, laiksTotal: c , showTotals: self.showTotals)
                 
                 // set the description, index, color ans status
                 btn.likeDescr = "\(c) \(self.iconCollection.laikDescriptions[i])"
                 btn.index = i
                 btn.btnColor = self.iconCollection.laikColors[i]
-                //btn.isTapped = false
+                
                 // set the points to move the icon to
                 btn.btnCirclePoint = self.specificPointOnCircle(radius, center: centralPoint, angle: angle)
                 btn.btnCircleOffScreenPoint = self.specificPointOnCircle(radiusOffScreen, center: centralPoint, angle: angle)
                 btn.center = centralPoint
                 btn.btnCenter = centralPoint
                 angle = angle + increm
+                
                 // set the delegate
                 btn.delegate = self
+                
                 // hide the icon
                 btn.alpha = 0
                 btn.isSaved = self.iconCollection.laikSaved[i]
                 btn.setupTargets()
+                
                 // add it to the view
                 self.vwButtons.addSubview(btn)
+                
                 // add it to the btnIcons array
                 btnIcons.append(btn)
                 self.bringSubviewToFront(btn)
@@ -210,11 +217,6 @@ class LMIconMenu: UIView, LMIconBtnDelegate {
         
             // set the status at the end of the proc!!
             self.menuStatus = enumStatus.iconsCreated
-        
-
-        
-        
-        
     }
     
     
@@ -227,15 +229,12 @@ class LMIconMenu: UIView, LMIconBtnDelegate {
         
     }
     
-    
-    
     func addGesture(){
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(selfieTapped))
         self.userInteractionEnabled = true
         self.vwMain.addGestureRecognizer(tapGestureRecognizer)
     }
-    
     
     
     func selfieTapped(){
@@ -277,7 +276,6 @@ class LMIconMenu: UIView, LMIconBtnDelegate {
         self.animEngine.animateButtonsOffScreen(false)
         // hide the laik info
         self.vwLaikDescrLeftConstraint.animateHide()
-//        self.animEngine.animateHide(self.btnMain, completion: nil)
         // set the status to hidden
         self.menuStatus = enumStatus.iconsHidden
     }
@@ -291,8 +289,6 @@ class LMIconMenu: UIView, LMIconBtnDelegate {
             }
             self.btnSelectedCount = 0
         }
-        
-        
     }
     
     
